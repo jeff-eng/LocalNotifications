@@ -15,7 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // Handling what to do when user swipes on local notification from lock screen
+        if let options = launchOptions {
+            if let notification = options[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
+                if let userInfo = notification.userInfo {
+                    let customField1 = userInfo["CustomField1"] as! String
+                    // do something here
+                }
+            }
+        }
+        
         return true
     }
 
@@ -41,6 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        if let userInfo = notification.userInfo {
+            let customField1 = userInfo["CustomField1"] as! String
+            print("didReceiveLocalNotification: \(customField1)")
+        }
+    }
 
 }
 
