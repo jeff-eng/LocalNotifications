@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBAction func registerLocal(sender: AnyObject) {
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
     }
 
     @IBAction func scheduleLocal(sender: AnyObject) {
