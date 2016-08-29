@@ -10,11 +10,22 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBAction func registerLocal(sender: AnyObject) {
+        
         let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        
     }
 
     @IBAction func scheduleLocal(sender: AnyObject) {
+        
+        let notification = UILocalNotification()
+        notification.fireDate = NSDate(timeIntervalSinceNow: 5)
+        notification.alertBody = "You have a notification! View it now!"
+        notification.alertAction = "find out what is so important"
+        notification.soundName = UILocalNotificationDefaultSoundName
+        notification.userInfo = ["CustomField1": "Boomshakalaka!"]
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
     }
     
     override func viewDidLoad() {
